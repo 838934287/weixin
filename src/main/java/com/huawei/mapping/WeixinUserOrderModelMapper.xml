@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huawei.dao.WeixinUserOrderModelMapper">
+  <resultMap id="BaseResultMap" type="com.huawei.model.WeixinUserOrderModel">
+    <id column="WeixinUserOrderModel_id" jdbcType="INTEGER" property="id" />
+    <result column="WeixinUserOrderModel_Customer_Order" jdbcType="VARCHAR" property="customerOrder" />
+    <result column="WeixinUserOrderModel_Order_Request_Date" jdbcType="VARCHAR" property="orderRequestDate" />
+    <result column="WeixinUserOrderModel_Order_Date" jdbcType="VARCHAR" property="orderDate" />
+    <result column="WeixinUserOrderModel_Area" jdbcType="VARCHAR" property="area" />
+    <result column="WeixinUserOrderModel_Phone_No" jdbcType="VARCHAR" property="phoneNo" />
+    <result column="WeixinUserOrderModel_User_Weixin_Id" jdbcType="VARCHAR" property="userWeixinId" />
+    <result column="WeixinUserOrderModel_User_Name" jdbcType="VARCHAR" property="userName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    WeixinUserOrderModel.id as WeixinUserOrderModel_id, WeixinUserOrderModel.Customer_Order as WeixinUserOrderModel_Customer_Order, 
+    WeixinUserOrderModel.Order_Request_Date as WeixinUserOrderModel_Order_Request_Date, 
+    WeixinUserOrderModel.Order_Date as WeixinUserOrderModel_Order_Date, WeixinUserOrderModel.Area as WeixinUserOrderModel_Area, 
+    WeixinUserOrderModel.Phone_No as WeixinUserOrderModel_Phone_No, WeixinUserOrderModel.User_Weixin_Id as WeixinUserOrderModel_User_Weixin_Id, 
+    WeixinUserOrderModel.User_Name as WeixinUserOrderModel_User_Name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from WeixinUserOrder WeixinUserOrderModel
+    where WeixinUserOrderModel.id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from WeixinUserOrder
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.huawei.model.WeixinUserOrderModel">
+    insert into WeixinUserOrder (id, Customer_Order, Order_Request_Date, 
+      Order_Date, Area, Phone_No, 
+      User_Weixin_Id, User_Name)
+    values (#{id,jdbcType=INTEGER}, #{customerOrder,jdbcType=VARCHAR}, #{orderRequestDate,jdbcType=VARCHAR}, 
+      #{orderDate,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{phoneNo,jdbcType=VARCHAR}, 
+      #{userWeixinId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huawei.model.WeixinUserOrderModel">
+    insert into WeixinUserOrder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="customerOrder != null">
+        Customer_Order,
+      </if>
+      <if test="orderRequestDate != null">
+        Order_Request_Date,
+      </if>
+      <if test="orderDate != null">
+        Order_Date,
+      </if>
+      <if test="area != null">
+        Area,
+      </if>
+      <if test="phoneNo != null">
+        Phone_No,
+      </if>
+      <if test="userWeixinId != null">
+        User_Weixin_Id,
+      </if>
+      <if test="userName != null">
+        User_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customerOrder != null">
+        #{customerOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="orderRequestDate != null">
+        #{orderRequestDate,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        #{orderDate,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userWeixinId != null">
+        #{userWeixinId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huawei.model.WeixinUserOrderModel">
+    update WeixinUserOrder
+    <set>
+      <if test="customerOrder != null">
+        Customer_Order = #{customerOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="orderRequestDate != null">
+        Order_Request_Date = #{orderRequestDate,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        Order_Date = #{orderDate,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        Area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        Phone_No = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userWeixinId != null">
+        User_Weixin_Id = #{userWeixinId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        User_Name = #{userName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huawei.model.WeixinUserOrderModel">
+    update WeixinUserOrder
+    set Customer_Order = #{customerOrder,jdbcType=VARCHAR},
+      Order_Request_Date = #{orderRequestDate,jdbcType=VARCHAR},
+      Order_Date = #{orderDate,jdbcType=VARCHAR},
+      Area = #{area,jdbcType=VARCHAR},
+      Phone_No = #{phoneNo,jdbcType=VARCHAR},
+      User_Weixin_Id = #{userWeixinId,jdbcType=VARCHAR},
+      User_Name = #{userName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

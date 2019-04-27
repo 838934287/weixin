@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huawei.dao.CustomerAdviceModelMapper">
+  <resultMap id="BaseResultMap" type="com.huawei.model.CustomerAdviceModel">
+    <id column="CustomerAdviceModel_id" jdbcType="BIGINT" property="id" />
+    <id column="CustomerAdviceModel_employee_id" jdbcType="VARCHAR" property="employeeId" />
+    <result column="CustomerAdviceModel_attitude_code" jdbcType="VARCHAR" property="attitudeCode" />
+    <result column="CustomerAdviceModel_advice_content" jdbcType="VARCHAR" property="adviceContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CustomerAdviceModel.id as CustomerAdviceModel_id, CustomerAdviceModel.employee_id as CustomerAdviceModel_employee_id, 
+    CustomerAdviceModel.attitude_code as CustomerAdviceModel_attitude_code, CustomerAdviceModel.advice_content as CustomerAdviceModel_advice_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customerAdvice CustomerAdviceModel
+    where CustomerAdviceModel.id = #{id,jdbcType=BIGINT}
+      and CustomerAdviceModel.employee_id = #{employeeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from customerAdvice
+    where id = #{id,jdbcType=BIGINT}
+      and employee_id = #{employeeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertAdvice" parameterType="com.huawei.model.CustomerAdviceModel">
+    insert into customerAdvice (employee_id, attitude_code, 
+      advice_content)
+    values (#{employeeId,jdbcType=VARCHAR}, #{attitudeCode,jdbcType=VARCHAR}, 
+      #{adviceContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huawei.model.CustomerAdviceModel">
+    insert into customerAdvice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="employeeId != null">
+        employee_id,
+      </if>
+      <if test="attitudeCode != null">
+        attitude_code,
+      </if>
+      <if test="adviceContent != null">
+        advice_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="employeeId != null">
+        #{employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="attitudeCode != null">
+        #{attitudeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="adviceContent != null">
+        #{adviceContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huawei.model.CustomerAdviceModel">
+    update customerAdvice
+    <set>
+      <if test="attitudeCode != null">
+        attitude_code = #{attitudeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="adviceContent != null">
+        advice_content = #{adviceContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and employee_id = #{employeeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huawei.model.CustomerAdviceModel">
+    update customerAdvice
+    set attitude_code = #{attitudeCode,jdbcType=VARCHAR},
+      advice_content = #{adviceContent,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and employee_id = #{employeeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration  
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">  
+      
+<configuration>  
+    <!-- 全局别名设置，在映射文件中只需写别名，而不必写出整个类路径  -->  
+    <typeAliases>
+         <typeAlias type="com.huawei.model.PersonModel" alias="PersonModel"/> 
+         <typeAlias type="com.huawei.model.MessageModel" alias = "MessageModel"/>
+         <typeAlias type="com.huawei.model.WeixinUserModel" alias = "WeixinUserModel"/>
+         <typeAlias type="com.huawei.model.CustomerAdviceModel" alias = "CustomerAdviceModel"/>
+         <typeAlias type="com.huawei.model.EmployeeModel" alias = "EmployeeModel"/>
+         <typeAlias type="com.huawei.model.WeixinUserOrderModel" alias = "WeixinUserOrderModel"/>
+         
+         
+    </typeAliases>
+      <mappers>
+        <mapper resource="com/huawei/mapping/PersonMapper.xml" />  
+        <mapper resource="com/huawei/mapping/HandleMessageMapper.xml" />
+        <mapper resource="com/huawei/mapping/WeixinUserModelMapper.xml" />
+        <mapper resource="com/huawei/mapping/CustomerAdviceModelMapper.xml" />
+        <mapper resource="com/huawei/mapping/EmployeeModelMapper.xml" />
+        <mapper resource="com/huawei/mapping/WeixinUserOrderModelMapper.xml" />
+           
+        
+    </mappers>
+</configuration>
